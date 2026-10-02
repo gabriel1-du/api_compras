@@ -12,7 +12,7 @@ public class UsuarioClient {
     @Autowired
     private RestClient usuariosRestClient;
 
-    public UsuarioExternoDTO obtenerUsuarioPorId(Long id_usuario) {
+    public UsuarioExternoDTO getUsuarioById(Long id_usuario) {
         try {
             return usuariosRestClient.get()
                     .uri("/{id_usuario}", id_usuario)

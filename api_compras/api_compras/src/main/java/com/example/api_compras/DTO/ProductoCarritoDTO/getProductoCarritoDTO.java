@@ -1,9 +1,11 @@
 package com.example.api_compras.DTO.ProductoCarritoDTO;
 
+import java.math.BigDecimal;
+
 import lombok.Data;
 
 @Data
-public class getProductoCarrito {
+public class getProductoCarritoDTO {
 
     //ID's
     private Long id_producto_carrito;
@@ -13,6 +15,6 @@ public class getProductoCarrito {
     //Atributos del producto (historieta)
     private String nombre_historieta;
     private Integer cantidad;
-    private Integer precio_unitario;
+    private BigDecimal precio_unitario;
 
 }

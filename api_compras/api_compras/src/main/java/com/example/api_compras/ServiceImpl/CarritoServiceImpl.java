@@ -38,7 +38,7 @@ public class CarritoServiceImpl implements CarritoService {
 
         for (Carrito carrito : carritos) {
             // Consulta de datos de usuario via RestClient por cada carrito
-            UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(carrito.getId_usuario());
+            UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(carrito.getId_usuario());
             listaDTO.add(carritoDTOMapper.toGetCarritoDTO(carrito, usuarioExterno));
         }
 
@@ -51,7 +51,7 @@ public class CarritoServiceImpl implements CarritoService {
                 .orElseThrow(() -> new RuntimeException("Carrito no encontrado con id: " + id_carrito));
 
         // Consulta de datos de usuario via RestClient
-        UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(carrito.getId_usuario());
+        UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(carrito.getId_usuario());
 
         return carritoDTOMapper.toGetCarritoDTO(carrito, usuarioExterno);
     }
@@ -70,7 +70,7 @@ public class CarritoServiceImpl implements CarritoService {
         Carrito carritoGuardado = carritoRepository.save(carrito);
 
         // 3. Ejecutar la petición HTTP a api_usuarios para traer el nombre y apellidos
-        UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(carritoGuardado.getId_usuario());
+        UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(carritoGuardado.getId_usuario());
 
         // 4. Retornar el DTO usando el Mapper (combina la entidad local y los datos del RestClient)
         return carritoDTOMapper.toGetCarritoDTO(carritoGuardado, usuarioExterno);
@@ -89,7 +89,7 @@ public class CarritoServiceImpl implements CarritoService {
         Carrito carritoActualizado = carritoRepository.save(carrito_existente);
 
         // Llamada a api_usuarios para reflejar los datos del usuario actual
-        UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(carritoActualizado.getId_usuario());
+        UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(carritoActualizado.getId_usuario());
 
         return carritoDTOMapper.toGetCarritoDTO(carritoActualizado, usuarioExterno);
     }

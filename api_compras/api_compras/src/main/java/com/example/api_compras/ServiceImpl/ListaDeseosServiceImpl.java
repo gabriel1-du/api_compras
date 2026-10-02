@@ -40,7 +40,7 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
 
         for (ListaDeseos lista : listas) {
             // Consulta de datos de usuario via RestClient por cada carrito
-            UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(lista.getId_usuario());
+            UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(lista.getId_usuario());
             listaDTO.add(listaDTOMapper.togetListaDeseosoDTO(lista, usuarioExterno));
         }
 
@@ -54,7 +54,7 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
                 .orElseThrow(() -> new RuntimeException("Carrito no encontrado con id: " + id_lista));
 
         // Consulta de datos de usuario via RestClient
-        UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(lista.getId_usuario());
+        UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(lista.getId_usuario());
 
         return listaDTOMapper.togetListaDeseosoDTO(lista, usuarioExterno);
     }
@@ -72,7 +72,7 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
         ListaDeseos listaGuardada = listaRepository.save(lista);
 
         //Ejecutar la petición HTTP a api_usuarios para traer el nombre y apellidos
-        UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(listaGuardada.getId_usuario());
+        UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(listaGuardada.getId_usuario());
 
         // Retornar el DTO usando el Mapper (combina la entidad local y los datos del RestClient)
         return listaDTOMapper.togetListaDeseosoDTO(listaGuardada, usuarioExterno);
@@ -91,7 +91,7 @@ public class ListaDeseosServiceImpl implements ListaDeseosService {
         ListaDeseos listaActualizada = listaRepository.save(lista_existente);
 
         // Llamada a api_usuarios para reflejar los datos del usuario actual
-        UsuarioExternoDTO usuarioExterno = usuarioClient.obtenerUsuarioPorId(listaActualizada.getId_usuario());
+        UsuarioExternoDTO usuarioExterno = usuarioClient.getUsuarioById(listaActualizada.getId_usuario());
 
         return listaDTOMapper.togetListaDeseosoDTO(listaActualizada, usuarioExterno);
     }

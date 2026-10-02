@@ -12,7 +12,7 @@ public class HistorietaClient {
     @Autowired
     private RestClient historietaRestClient;
 
-    public HistorietaExternoDTO obtenerUsuarioPorId(Long id_hist) {
+    public HistorietaExternoDTO obtenerHistorietaPorId(Long id_hist) {
         try {
             return historietaRestClient.get()
                     .uri("/{id_historieta}", id_hist)
