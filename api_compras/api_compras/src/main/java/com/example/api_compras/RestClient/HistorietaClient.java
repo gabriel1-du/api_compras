@@ -4,20 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import com.example.api_compras.DTO.RestClientDTO.UsuarioExternoDTO;
+import com.example.api_compras.DTO.RestClientDTO.HistorietaExternoDTO;
 
 @Component 
 public class HistorietaClient {
 
     @Autowired
-    private RestClient usuariosRestClient;
+    private RestClient historietaRestClient;
 
-    public UsuarioExternoDTO obtenerUsuarioPorId(Long id_usuario) {
+    public HistorietaExternoDTO obtenerUsuarioPorId(Long id_hist) {
         try {
-            return usuariosRestClient.get()
-                    .uri("/{id_usuario}", id_usuario)
+            return historietaRestClient.get()
+                    .uri("/{id_historieta}", id_hist)
                     .retrieve()
-                    .body(UsuarioExternoDTO.class);
+                    .body(HistorietaExternoDTO.class);
         } catch (Exception e) {
             // Si el servicio no responde o el usuario no existe
             return null;
