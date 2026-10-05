@@ -3,6 +3,7 @@ package com.example.api_compras.DTO.ProductoListaDeseosDTO;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.example.api_compras.DTO.RestClientDTO.HistorietaExternoDTO;
 import com.example.api_compras.Model.ListaDeseos;
@@ -10,9 +11,10 @@ import com.example.api_compras.Model.ProductoListaDeseos;
 import com.example.api_compras.Repository.ListaDeseosRepository;
 import com.example.api_compras.RestClient.HistorietaClient;
 
-import lombok.AllArgsConstructor;
+
 import lombok.RequiredArgsConstructor;
 
+@Component 
 @RequiredArgsConstructor 
 public class ProductoListaDeseosMapper {
 
