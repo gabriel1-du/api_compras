@@ -52,7 +52,7 @@ public class ProductoListaDeseosMapper {
 
     
     public ProductoListaDeseos toEntityFromSaveDTO(saveProductoListaDeseosDTO dto) {
-        
+
         if (dto == null) {
             return null;
         }
@@ -79,24 +79,5 @@ public class ProductoListaDeseosMapper {
     }
 
    
-    public void updateEntityFromPutDTO(saveProductoListaDeseosDTO dto, ProductoListaDeseos prodListaExistente) {
-        if (dto == null || prodListaExistente == null) {
-            return;
-        }
-
-        if (dto.getId_lista_deseos() != null) {
-            ListaDeseos nuevaLista = listaDeseosRepo.findById(dto.getId_lista_deseos())
-                    .orElseThrow(() -> new RuntimeException("ID de lista de deseos inexistente: " + dto.getId_lista_deseos()));
-            prodListaExistente.setListaDeseos(nuevaLista);
-        }
-
-        if (dto.getId_producto() != null) {
-            HistorietaExternoDTO histoExtern = histClient.obtenerHistorietaPorId(dto.getId_producto());
-            if (histoExtern == null) {
-                throw new RuntimeException("ID de producto (historieta) inexistente: " + dto.getId_producto());
-            }
-            prodListaExistente.setId_producto(dto.getId_producto());
-        }
-    }
-
+   
 }
