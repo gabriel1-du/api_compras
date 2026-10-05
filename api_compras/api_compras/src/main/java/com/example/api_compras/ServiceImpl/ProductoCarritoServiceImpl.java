@@ -108,4 +108,13 @@ public class ProductoCarritoServiceImpl implements ProductoCarritoService {
     }
 
 
+    public void deleteProductoCarrito(Long id_producto_carrito) {
+        // 1. Verificar si el producto del carrito existe en la base de datos local
+        ProductoCarrito producto_del = repo.findById(id_producto_carrito)
+                .orElseThrow(() -> new RuntimeException("Producto de carrito no encontrado con el ID: " + id_producto_carrito));
+
+        // 2. Eliminar el registro
+        repo.delete(producto_del);
+    }
+
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -76,6 +77,16 @@ public class ProductoCarritoController {
     }
 
 
+    @DeleteMapping("/{id_producto_carrito}")
+    public ResponseEntity<?> deleteProductoCarrito(@PathVariable("id_producto_carrito") Long id_producto_carrito) {
+        try {
+            prodServ.deleteProductoCarrito(id_producto_carrito);
+            return ResponseEntity.ok("Producto de carrito eliminado exitosamente");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
 
 }

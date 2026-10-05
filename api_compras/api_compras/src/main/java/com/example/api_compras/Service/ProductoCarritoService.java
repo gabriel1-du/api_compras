@@ -16,4 +16,6 @@ public interface ProductoCarritoService {
     public getProductoCarritoDTO saveProductoCarrito(saveCarritoProductoCartDTO dto);
 
     public getProductoCarritoDTO putProductoCarrito(Long id_producto_carrito, putCarritoDTO putDto);
+
+    public void deleteProductoCarrito(Long id_producto_carrito);
 };
