@@ -19,7 +19,9 @@ public class HistorietaClient {
                     .retrieve()
                     .body(HistorietaExternoDTO.class);
         } catch (Exception e) {
-            // Si el servicio no responde o el usuario no existe
+            // IMPRIME EL ERROR REAL EN LA TERMINAL
+            System.err.println("ERROR AL CONECTAR CON HISTORIETA CLIENT: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }

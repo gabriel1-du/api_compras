@@ -1,5 +1,8 @@
 package com.example.api_compras.ServiceImpl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +47,21 @@ public class ProductoCarritoServiceImpl implements ProductoCarritoService {
         //Devolvemos con el dto
         return mapper.toGetProdCarritoDTO(producto, histoExtern);
     } 
+
+
+    //fin metodos post
+    public List<getProductoCarritoDTO> getAllProductoCarrito() {
+        return repo.findAll()
+                .stream()
+                .map(prodCarrito -> {
+
+                    HistorietaExternoDTO histoExtern = histClient.obtenerHistorietaPorId(prodCarrito.getId_producto());
+                    
+
+                    return mapper.toGetProdCarritoDTO(prodCarrito, histoExtern);
+                })
+                .collect(Collectors.toList());
+    }
 
 
 

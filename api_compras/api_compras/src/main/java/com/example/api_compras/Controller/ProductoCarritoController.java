@@ -7,6 +7,8 @@ import com.example.api_compras.DTO.ProductoCarritoDTO.putCarritoDTO;
 import com.example.api_compras.DTO.ProductoCarritoDTO.saveCarritoProductoCartDTO;
 import com.example.api_compras.Service.ProductoCarritoService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,13 @@ public class ProductoCarritoController {
         }
     } 
 
+    @GetMapping("/")
+    public ResponseEntity<List<getProductoCarritoDTO>> getAllProductoCarrito() {
+        List<getProductoCarritoDTO> productosCarrito = prodServ.getAllProductoCarrito();
+        return ResponseEntity.ok(productosCarrito);
+    }
+    //fin metodos post
+
     //metodo post 
     @PostMapping("/")
     public ResponseEntity<?> saveProductoCarrito(@RequestBody saveCarritoProductoCartDTO prod){
@@ -65,6 +74,7 @@ public class ProductoCarritoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
 
 
 
