@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.api_compras.DTO.ProductoCarritoDTO.ProductoCarritoMapper;
 import com.example.api_compras.DTO.ProductoCarritoDTO.getProductoCarritoDTO;
+import com.example.api_compras.DTO.ProductoCarritoDTO.putCarritoDTO;
 import com.example.api_compras.DTO.ProductoCarritoDTO.saveCarritoProductoCartDTO;
 import com.example.api_compras.DTO.RestClientDTO.HistorietaExternoDTO;
 import com.example.api_compras.Model.Carrito;
@@ -67,6 +68,25 @@ public class ProductoCarritoServiceImpl implements ProductoCarritoService {
         } catch (Exception e) {
             throw new RuntimeException("Error al guardar el producto en el carrito: " + e.getMessage());
         }
+    }
+
+    public getProductoCarritoDTO putProductoCarrito(Long id_producto_carrito, putCarritoDTO putDto) {
+        
+        //comprobacion carrito
+        ProductoCarrito productoExistente = repo.findById(id_producto_carrito)
+                .orElseThrow(() -> new RuntimeException("Producto de carrito no encontrado con el ID: " + id_producto_carrito));
+
+    
+        mapper.updateEntityFromPutDTO(putDto, productoExistente);
+
+        // Guardar cambios
+        ProductoCarrito productoActualizado = repo.save(productoExistente);
+
+        // Consulta hacia client 
+        HistorietaExternoDTO histoExtern = histClient.obtenerHistorietaPorId(productoActualizado.getId_producto());
+
+    
+        return mapper.toGetProdCarritoDTO(productoActualizado, histoExtern);
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.api_compras.Service;
 
 import com.example.api_compras.DTO.ProductoCarritoDTO.getProductoCarritoDTO;
+import com.example.api_compras.DTO.ProductoCarritoDTO.putCarritoDTO;
 import com.example.api_compras.DTO.ProductoCarritoDTO.saveCarritoProductoCartDTO;
 
 public interface ProductoCarritoService {
@@ -10,4 +11,6 @@ public interface ProductoCarritoService {
 
 
     public getProductoCarritoDTO saveProductoCarrito(saveCarritoProductoCartDTO dto);
+
+    public getProductoCarritoDTO putProductoCarrito(Long id_producto_carrito, putCarritoDTO putDto);
 };

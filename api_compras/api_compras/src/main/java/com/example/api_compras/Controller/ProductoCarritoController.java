@@ -3,6 +3,7 @@ package com.example.api_compras.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api_compras.DTO.ProductoCarritoDTO.getProductoCarritoDTO;
+import com.example.api_compras.DTO.ProductoCarritoDTO.putCarritoDTO;
 import com.example.api_compras.DTO.ProductoCarritoDTO.saveCarritoProductoCartDTO;
 import com.example.api_compras.Service.ProductoCarritoService;
 
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +52,18 @@ public class ProductoCarritoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
             
+    }
+
+    @PutMapping("/{id_producto_carrito}")
+    public ResponseEntity<?> putProductoCarrito(@PathVariable("id_producto_carrito") Long id_producto_carrito, @RequestBody putCarritoDTO putDto) {
+        
+        try {
+            getProductoCarritoDTO productoActualizado = prodServ.putProductoCarrito(id_producto_carrito, putDto);
+            return ResponseEntity.ok(productoActualizado);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
 

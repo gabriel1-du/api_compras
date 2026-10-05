@@ -72,6 +72,21 @@ public class ProductoCarritoMapper {
 
         return prodCarrito;
     }
+
+    public void updateEntityFromPutDTO(putCarritoDTO dto, ProductoCarrito prodCarritoExistente) {
+        if (dto == null || prodCarritoExistente == null) {
+            return;
+        }
+
+        if (dto.getCantidad() != null) {
+            prodCarritoExistente.setCantidad(dto.getCantidad());
+        }
+
+        if (dto.getPrecio_unitario() != null) {
+            prodCarritoExistente.setPrecio_unitario(dto.getPrecio_unitario());
+        }
+    }
+    
 };
 
 
