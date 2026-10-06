@@ -30,6 +30,7 @@ public class Carrito {
     @Column(name = "id_usuario", nullable = false)
     private Long id_usuario;
 
+
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fecha_creacion;
 

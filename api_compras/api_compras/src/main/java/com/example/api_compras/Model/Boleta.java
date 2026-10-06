@@ -27,6 +27,9 @@ public class Boleta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_boleta;
 
+    @Column(name = "id_carrito", nullable = false)
+    private Long id_carrito;
+    
     // Relación física con HistorialCompras
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_historial", nullable = false)

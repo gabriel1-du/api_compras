@@ -53,12 +53,15 @@ CREATE TABLE BOLETAS (
 );
 
 
-CREATE TABLE HISTORIAL_COMPRAS (
-    id_historial BIGINT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario BIGINT NOT NULL, -- Referencia lógica a ms-usuarios
-    id_boleta BIGINT NOT NULL,
-    cantidad_compras INT DEFAULT 0,
-    total_gastado DECIMAL(10,2) DEFAULT 0.00,
-    INDEX idx_historial_usuario (id_usuario),
-    CONSTRAINT fk_historial_boleta FOREIGN KEY (id_boleta) REFERENCES BOLETAS(id_boleta)
+CREATE TABLE BOLETAS (
+    id_boleta BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario BIGINT NOT NULL, 
+    id_carrito BIGINT NOT NULL, -- Nueva relación física con la tabla CARRITOS
+    id_medio_pago BIGINT NOT NULL,
+    monto_total DECIMAL(10,2) NOT NULL,
+    fecha_emision DATETIME NOT NULL,
+    rut_comprador VARCHAR(12) NOT NULL, 
+    nombre_comprador VARCHAR(150) NOT NULL,
+    CONSTRAINT fk_boleta_medio_pago FOREIGN KEY (id_medio_pago) REFERENCES MEDIOS_PAGO(id_medio_pago),
+    CONSTRAINT fk_boleta_carrito FOREIGN KEY (id_carrito) REFERENCES CARRITOS(id_carrito)
 );
