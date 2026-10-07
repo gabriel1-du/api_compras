@@ -41,27 +41,23 @@ CREATE TABLE PRODUCTOS_LISTA_DESEOS (
 );
 
 
-CREATE TABLE BOLETAS (
-    id_boleta BIGINT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario BIGINT NOT NULL, 
-    id_medio_pago BIGINT NOT NULL,
-    monto_total DECIMAL(10,2) NOT NULL,
-    fecha_emision DATETIME NOT NULL,
-    rut_comprador VARCHAR(12) NOT NULL, 
-    nombre_comprador VARCHAR(150) NOT NULL,
-    CONSTRAINT fk_boleta_medio_pago FOREIGN KEY (id_medio_pago) REFERENCES MEDIOS_PAGO(id_medio_pago)
+CREATE TABLE HISTORIAL_COMPRAS (
+    id_historial BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario BIGINT NOT NULL, -- Referencia lógica a ms-usuarios
+    INDEX idx_historial_usuario (id_usuario)
 );
 
-
 CREATE TABLE BOLETAS (
     id_boleta BIGINT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario BIGINT NOT NULL, 
-    id_carrito BIGINT NOT NULL, -- Nueva relación física con la tabla CARRITOS
+    id_usuario BIGINT NOT NULL,
+    id_historial BIGINT NOT NULL, -- Relación física con HISTORIAL_COMPRAS
+    id_carrito BIGINT NOT NULL,   -- Relación física con CARRITOS
     id_medio_pago BIGINT NOT NULL,
     monto_total DECIMAL(10,2) NOT NULL,
     fecha_emision DATETIME NOT NULL,
-    rut_comprador VARCHAR(12) NOT NULL, 
+    rut_comprador VARCHAR(12) NOT NULL,
     nombre_comprador VARCHAR(150) NOT NULL,
-    CONSTRAINT fk_boleta_medio_pago FOREIGN KEY (id_medio_pago) REFERENCES MEDIOS_PAGO(id_medio_pago),
-    CONSTRAINT fk_boleta_carrito FOREIGN KEY (id_carrito) REFERENCES CARRITOS(id_carrito)
+    CONSTRAINT fk_boleta_historial FOREIGN KEY (id_historial) REFERENCES HISTORIAL_COMPRAS(id_historial),
+    CONSTRAINT fk_boleta_carrito FOREIGN KEY (id_carrito) REFERENCES CARRITOS(id_carrito),
+    CONSTRAINT fk_boleta_medio_pago FOREIGN KEY (id_medio_pago) REFERENCES MEDIOS_PAGO(id_medio_pago)
 );

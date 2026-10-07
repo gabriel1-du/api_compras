@@ -10,6 +10,7 @@ import lombok.Data;
 public class saveBoletaDTO {
 
     private Long id_usuario;
+    private Long id_historial;
     private Long id_medio_pago;
     private Long id_carrito;
     private String rut_comprador;
