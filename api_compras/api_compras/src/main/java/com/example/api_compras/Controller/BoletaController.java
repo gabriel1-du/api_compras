@@ -19,7 +19,7 @@ import com.example.api_compras.Service.BoletaService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/boletas")
+@RequestMapping("/api/boletasApi")
 @RequiredArgsConstructor
 public class BoletaController {
 

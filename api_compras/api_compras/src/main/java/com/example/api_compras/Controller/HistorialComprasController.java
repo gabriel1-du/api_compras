@@ -17,7 +17,7 @@ import com.example.api_compras.DTO.HistorialComprasDTO.saveHistorialComprasDTO;
 import com.example.api_compras.Service.HistorialComprasService;
 
 @RestController
-@RequestMapping("/api/historialCompras")
+@RequestMapping("/api/historialComprasApi")
 public class HistorialComprasController {
 
     @Autowired

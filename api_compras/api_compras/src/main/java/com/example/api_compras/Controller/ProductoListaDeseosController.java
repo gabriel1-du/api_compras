@@ -20,7 +20,7 @@ import com.example.api_compras.Service.ProductoListaDeseosService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/productoListaDeseosRequest")
+@RequestMapping("/api/productoListaDeseosApi")
 @AllArgsConstructor
 public class ProductoListaDeseosController {
 

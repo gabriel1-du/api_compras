@@ -18,7 +18,7 @@ public class RestClientConfig {
     @Bean
     public RestClient historietaRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8083/api/historietaRequest") // Endpoint base de usuarios
+                .baseUrl("http://localhost:8083/api/historietaApi") // Endpoint base de usuarios
                 .build();
     }
 }

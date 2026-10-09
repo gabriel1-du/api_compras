@@ -1,4 +1,4 @@
-package com.example.api_compras.Model;
+    package com.example.api_compras.Model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

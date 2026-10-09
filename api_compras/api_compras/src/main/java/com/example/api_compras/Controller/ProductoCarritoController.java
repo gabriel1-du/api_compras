@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController 
-@RequestMapping("/api/ProductoCartRequest")
+@RequestMapping("/api/ProductoCartApi")
 public class ProductoCarritoController {
 
     @Autowired 
