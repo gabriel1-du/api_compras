@@ -61,3 +61,4 @@ CREATE TABLE BOLETAS (
     CONSTRAINT fk_boleta_carrito FOREIGN KEY (id_carrito) REFERENCES CARRITOS(id_carrito),
     CONSTRAINT fk_boleta_medio_pago FOREIGN KEY (id_medio_pago) REFERENCES MEDIOS_PAGO(id_medio_pago)
 );
+    
