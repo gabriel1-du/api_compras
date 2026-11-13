@@ -1,5 +1,6 @@
 package com.example.api_compras.RestClient;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestClient;
@@ -8,17 +9,24 @@ import org.springframework.web.client.RestClient;
 public class RestClientConfig {
     
     
+    @Value("${usuarios.service.url}")
+    private String usuariosUrl;
+
+    @Value("${inventario.service.url}")
+    private String inventarioUrl;
+
     @Bean
     public RestClient usuariosRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8080/api/usuariosApi") // Endpoint base de usuarios
+                .baseUrl(usuariosUrl.trim())
                 .build();
     }
 
     @Bean
     public RestClient historietaRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8083/api/historietaApi") // Endpoint base de usuarios
+                .baseUrl(inventarioUrl.trim())
                 .build();
     }
+    
 }

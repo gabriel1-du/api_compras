@@ -5,7 +5,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8081:8081"
-    depends_on:
-      - mysql-db
     env_file:
       - .env
